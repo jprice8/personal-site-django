@@ -1,5 +1,5 @@
 FROM nginx
 
-RUN rm /etc/nginx/sites-enabled/default
+RUN rm /etc/nginx/conf.d/default.conf
 
-COPY sites-enabled/ /etc/nginx/sites-enabled
+COPY conf.d/ /etc/nginx/conf.d
