@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %} {% load markdown_extras %} {% load static %} 
+
+{% block title %}
+<title>Projects</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>Project Portfolio</h1>
+  <div class="row">
+    {% for project in project_list %}
+    <div class="col s12 m4">
+      <div class="card" >
+        <div class="card-image waves-effect waves-block waves-light">
+          <img
+            class="activator"
+            src={{project.thumbnail_image_url}}
+            alt="project image"
+          />
+        </div>
+        <div class="card-content">
+          <span class="card-title activator gray-text text-darken-4"
+            >{{ project.title }}</span
+          >
+        </div>
+        <div class="card-action">
+          <p>
+            <a href="{% url 'project-detail' project.id %}">Explore Details</a>
+          </p>
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{ project.title }}<i class="material-icons right">close</i></span>
+          <span class="card-content">{{ project.description | markdown | safe }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

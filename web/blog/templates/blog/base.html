@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block title %}{% endblock title %}
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+      rel="stylesheet"
+    />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- CSS -->
+    <!-- Material icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS for materialize -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!-- My stylesheet -->
+    <link
+      href="{% static 'blog/base.css' %}"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo"></a>
+        <ul class="right hide-on-med-and-down">
+          <li style="width: 105px; text-align: center;"><a href="/">HOME</a></li>
+          <li style="width: 105px; text-align: center;"><a href="{% url 'post-list' %}">BLOG</a></li>
+          <li style="width: 105px; text-align: center;"><a href="{% url 'project-list' %}">PROJECTS</a></li>
+        </ul>
+  
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="/">HOME</a></li>
+          <li><a href="{% url 'post-list' %}">BLOG</a></li>
+          <li><a href="{% url 'project-list' %}">PROJECTS</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+    {% block content %}
+    <!-- Content Goes here -->
+    {% endblock content %}
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(elems, {});
+      });
+    </script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,185 @@
+{% extends 'blog/base.html' %} {% load static %} 
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block content %}
+<div id="index-banner" class="parallax-container">
+  <div class="section">
+    <div class="container">
+      <br /><br />
+      <div class="row center">
+        <div class="col l4"></div>
+        <div class="col l4">
+          <h1
+            id="jumboText"
+            style="margin-top: 10%"
+            class="header center white-text text-accent-2"
+          >
+            A collection of things I write about and work on
+          </h1>
+        </div>
+      </div>
+      <br /><br />
+    </div>
+  </div>
+  <div class="parallax">
+    <img
+      src="https://d3epl9dvc9angi.cloudfront.net/website/alaskan_nights.jpg"
+      alt="background img 1"
+    />
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col l2"></div>
+
+      <!-- About Section -->
+      <div class="col l8">
+        <div class="icon-block">
+          <h2 class="center gray-text">
+            <i class="material-icons">person</i>
+          </h2>
+          <h5 class="center">About</h5>
+
+          <p class="light">
+            In my day job, I spend a lot of time working with numbers and data.
+            As of the time I'm writing this, I work mostly remote and don't get
+            very many opportunities to express myself other than presenting
+            or collaborating on projects at work. All that to
+            say, it's easy to burn out if you don't have an outlet.
+          </p>
+          <p class="light">
+            About a year ago I started to journal in a Google Spreadsheet on the
+            different projects that I was working on outside of work. I found
+            that having a place where I could organize my thoughts was relaxing
+            in that it served as a creative outlet but also provided some much
+            needed organization. Around that same time, I was getting more
+            involved with Web Development type projects in my day job. Fast
+            forward to the beginning of 2021 and having already built several
+            websites, I realized it was time to build a site that could house
+            that Google Spreadsheet of thoughts and ideas. This is that website.
+          </p>
+          <p class="light">
+            There's over a billion something websites currently in existence and
+            time is valuable so the fact that you are on my sliver of the web is
+            something I'm grateful for. If you'd like to get in touch, there's a
+            form at the bottom of this page you can use to contact me. My work
+            (and content) centers mostly around Linux, Python (Django),
+            Javascript (React), C++, PostgreSQL, Cloud/DevOps type things,
+            systems architecture, and software development in general. If that
+            sounds like something I can help you with or you'd like to talk about 
+            feel free to reach out.
+          </p>
+        </div>
+      </div>
+
+      <div class="col l2"></div>
+    </div>
+  </div>
+</div>
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+      </div>
+    </div>
+  </div>
+  <div class="parallax">
+    <img
+      src="https://d3epl9dvc9angi.cloudfront.net/website/alaskan_nights.jpg"
+      alt="background img 2"
+    />
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <div class="center gray-text">
+          <h2><i class="material-icons">send</i></h2>
+        </div>
+        <h4>Contact</h4>
+
+        <form id="contactForm" style="margin-top: 40px;" action="/contact/" method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col s2"></div>
+            <div class="input-field col s4">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="first_name" name="first_name" type="text" class="validate" required />
+              <label for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s4">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="last_name" name="last_name" type="text" class="validate" required />
+              <label for="last_name">Last Name</label>
+            </div>
+            <div class="col s2"></div>
+          </div>
+          <div class="row">
+            <div class="col s2"></div>
+            <div class="input-field col s8">
+              <i class="material-icons prefix">mail</i>
+              <input id="email" name="email" type="email" class="validate" required />
+              <label for="email">Email</label>
+            </div>
+            <div class="col s2"></div>
+          </div>
+          <div class="row">
+            <div class="col s2"></div>
+            <div class="input-field col s8">
+              <i class="material-icons prefix">chat</i>
+              <textarea id="textarea1" name="message" class="materialize-textarea validate" required ></textarea>
+              <label for="textarea1">Message</label>
+            </div>
+            <div class="col s2"></div>
+          </div>
+          <div class="row">
+            <div class="col s5"></div>
+            <div class="col s2">
+              <button id="confirm" class="btn light-blue darken-1 waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+            <div class="col s5"></div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script src="{% static 'blog/init.js' %}"></script>
+<script>
+  function checkInputs() {
+    var isValid = true;
+
+    $('[required]').each(function() {
+      if ($(this).val() === '') {
+        $('#confirm').prop('disabled', true);
+        isValid = false;
+        return false;
+      }
+    });
+
+    if (isValid) {
+      $('#confirm').prop('disabled', false);
+    }
+
+    return isValid;
+  }
+
+  $('[required]').on('keyup', function() {
+    checkInputs();
+  })
+
+  checkInputs();
+</script>
+{% endblock %}
