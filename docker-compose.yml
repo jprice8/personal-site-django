@@ -4,15 +4,15 @@ services:
   web:
     restart: always
     build: ./web
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     volumes:
       - web-django:/usr/src/app
       - web-static:/usr/src/static
     env_file: .env
     environment:
       DEBUG: 'true'
-    command: /usr/local/bin/gunicorn mysite.wsgi:application -w 2 -b :8000
+    command: python manage.py runserver 0.0.0.0:8000
 
   nginx:
     restart: always 
