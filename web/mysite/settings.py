@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', False)
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.99.100']
 
 
 # Application definition
@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 # static root, "Should point to a dir on your filesystem,
 # the folder should be empty since it will be populated by Django."
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'blog/static'), os.path.join(BASE_DIR, 'static'),)
 
 # media static files
 MEDIA_URL = '/mediafiles/'
