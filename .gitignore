@@ -153,5 +153,4 @@ typings/
 .yarn-integrity
 
 # static files
-static
 staticfiles
